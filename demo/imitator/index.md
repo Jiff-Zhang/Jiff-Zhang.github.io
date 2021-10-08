@@ -1,2 +1,1062 @@
-# Demo
-TO BE CONTINUE.
+---
+layout: default
+---
+
+<!-- <h1 align='center'><font size='10'> IMITATOR: TEXT-FREE FEW-SHOT VOICE CLONING WITH LANGUAGE, ACCENT AND STYLE TRANSFER </font></h1>
+
+<center>Chuxiong Zhang, Junjie Pan, Chenchang Xu, Xiang Yin, Zejun Ma</center>
+<center>ByteDance AI-Lab</center>
+
+
+
+# Contents
+
+[toc]
+
+
+
+# Abstract
+
+Recently several voice cloning methods are proposed to resolve low-resource synthesis issues. However, pronunciation stability and speech quality are still severe challenges, as well as requirements for cross-lingual and multi-style transfer. This paper proposes a novel voice cloning method. By using ASR encoder outputs as intermediate features and introducing a text-to-context(T2C) module, we realize text-free fewshot voice cloning with relatively high stability and quality. Furthermore, we also demonstrate its ability to transfer language, accent and style from other speakers to target speaker for transferable voice cloning.
+
+
+
+# Architecture
+
+Framework:   <img src="image/framework.pdf" alt="Framework" style="zoom:100%;" />.
+
+Convert module: <img src="image/convert-model.pdf" alt="Convert Module" style="zoom:100%;" />
+
+SC-Lconv: <img src="image/scln.pdf" alt="SC-LConv" style="zoom:100%;" />
+
+# Experiment
+
+## voice Cloning
+
+### Mandarin
+
+<table>
+  <thead>
+    <tr>
+      <th>Record</th>
+      <th>Baseline</th>
+      <th>Imitator-S2C</th>
+      <th>Imitator-T2C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk1/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: 非常抱歉，也就是想了解一下您有多大的可能会将我们的广告服务推荐给其他人？</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/voice_cloning/Baseline-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/voice_cloning/Imitator_S2C-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/voice_cloning/Imitator_T2C-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: 你好像没有说话哦，我有什么可以帮你？</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/voice_cloning/Baseline-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/voice_cloning/Imitator_S2C-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/voice_cloning/Imitator_T2C-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk2/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: 非常抱歉，也就是想了解一下您有多大的可能会将我们的广告服务推荐给其他人？</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/voice_cloning/Baseline-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/voice_cloning/Imitator_S2C-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/voice_cloning/Imitator_T2C-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: 你好像没有说话哦，我有什么可以帮你？</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/voice_cloning/Baseline-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/voice_cloning/Imitator_S2C-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/voice_cloning/Imitator_T2C-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk3/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: 非常抱歉，也就是想了解一下您有多大的可能会将我们的广告服务推荐给其他人？</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/voice_cloning/Baseline-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/voice_cloning/Imitator_S2C-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/voice_cloning/Imitator_T2C-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: 你好像没有说话哦，我有什么可以帮你？</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/voice_cloning/Baseline-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/voice_cloning/Imitator_S2C-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/voice_cloning/Imitator_T2C-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk4/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: 非常抱歉，也就是想了解一下您有多大的可能会将我们的广告服务推荐给其他人？</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/voice_cloning/Baseline-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/voice_cloning/Imitator_S2C-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/voice_cloning/Imitator_T2C-bot0004.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: 你好像没有说话哦，我有什么可以帮你？</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/voice_cloning/Baseline-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/voice_cloning/Imitator_S2C-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/voice_cloning/Imitator_T2C-edu0001.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## cross Lingual
+
+### English
+
+<table>
+  <thead>
+    <tr>
+      <th>Record</th>
+      <th>Baseline</th>
+      <th>Imitator-S2C</th>
+      <th>Imitator-T2C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk1/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: "The Canberra Hospital has had to cancel some medical/diagnostic procedures due to smoke impacting the building and equipment," tweeted a Dr.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/cross_lingual-English/Baseline-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/cross_lingual-English/Imitator_S2C-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/cross_lingual-English/Imitator_T2C-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: "Due to poor air quality from smoke, the center is closed until further notice," said a statement on its website.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/cross_lingual-English/Baseline-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/cross_lingual-English/Imitator_S2C-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/cross_lingual-English/Imitator_T2C-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk2/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: "The Canberra Hospital has had to cancel some medical/diagnostic procedures due to smoke impacting the building and equipment," tweeted a Dr.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/cross_lingual-English/Baseline-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/cross_lingual-English/Imitator_S2C-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/cross_lingual-English/Imitator_T2C-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: "Due to poor air quality from smoke, the center is closed until further notice," said a statement on its website.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/cross_lingual-English/Baseline-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/cross_lingual-English/Imitator_S2C-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/cross_lingual-English/Imitator_T2C-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk3/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: "The Canberra Hospital has had to cancel some medical/diagnostic procedures due to smoke impacting the building and equipment," tweeted a Dr.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/cross_lingual-English/Baseline-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/cross_lingual-English/Imitator_S2C-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/cross_lingual-English/Imitator_T2C-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: "Due to poor air quality from smoke, the center is closed until further notice," said a statement on its website.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/cross_lingual-English/Baseline-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/cross_lingual-English/Imitator_S2C-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/cross_lingual-English/Imitator_T2C-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk4/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: "The Canberra Hospital has had to cancel some medical/diagnostic procedures due to smoke impacting the building and equipment," tweeted a Dr.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/cross_lingual-English/Baseline-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/cross_lingual-English/Imitator_S2C-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/cross_lingual-English/Imitator_T2C-000029.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: "Due to poor air quality from smoke, the center is closed until further notice," said a statement on its website.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/cross_lingual-English/Baseline-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/cross_lingual-English/Imitator_S2C-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/cross_lingual-English/Imitator_T2C-000097.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Japanese
+
+<table>
+  <thead>
+    <tr>
+      <th>Record</th>
+      <th>Imitator-T2C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk1/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="1">
+        <div class="text_gst">Text: あなたのことをさりげなく盗み見てた</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/cross_lingual-Japanese/Imitator_T2C-toyro_04200002.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <div class="text_gst">Text: 愛し合う二人の間に余計なものはいらない</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/cross_lingual-Japanese/Imitator_T2C-toyro_04400007.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk2/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="1">
+        <div class="text_gst">Text: あなたのことをさりげなく盗み見てた</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/cross_lingual-Japanese/Imitator_T2C-toyro_04200002.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <div class="text_gst">Text: 愛し合う二人の間に余計なものはいらない</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/cross_lingual-Japanese/Imitator_T2C-toyro_04400007.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk3/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="1">
+        <div class="text_gst">Text: あなたのことをさりげなく盗み見てた</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/cross_lingual-Japanese/Imitator_T2C-toyro_04200002.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <div class="text_gst">Text: 愛し合う二人の間に余計なものはいらない</div>
+      </td>
+    </tr>
+    <tr>
+     	<td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/cross_lingual-Japanese/Imitator_T2C-toyro_04400007.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk4/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="1">
+        <div class="text_gst">Text: あなたのことをさりげなく盗み見てた</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/cross_lingual-Japanese/Imitator_T2C-toyro_04200002.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <div class="text_gst">Text: 愛し合う二人の間に余計なものはいらない</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/cross_lingual-Japanese/Imitator_T2C-toyro_04400007.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+## Accent Transfer
+
+### English & Chinglish
+
+<table>
+  <thead>
+    <tr>
+      <th>Record</th>
+      <th>Imitator-T2C English</th>
+      <th>Imitator-T2C Chinglish</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk1/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: Now and then customers walked in, asking to buy masks.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/accent_transfer-English/Imitator_T2C-English-native-000042.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/accent_transfer-English/Imitator_T2C-English-non_native-000042.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: I need to point out that this appalling attack happening in London is an immediate result of some UK politicians' behavior for a while.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/accent_transfer-English/Imitator_T2C-English-native-000045.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/accent_transfer-English/Imitator_T2C-English-non_native-000045.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk2/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: Now and then customers walked in, asking to buy masks.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/accent_transfer-English/Imitator_T2C-English-native-000042.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/accent_transfer-English/Imitator_T2C-English-non_native-000042.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: I need to point out that this appalling attack happening in London is an immediate result of some UK politicians' behavior for a while.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/accent_transfer-English/Imitator_T2C-English-native-000045.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/accent_transfer-English/Imitator_T2C-English-non_native-000045.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk3/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: Now and then customers walked in, asking to buy masks.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/accent_transfer-English/Imitator_T2C-English-native-000042.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/accent_transfer-English/Imitator_T2C-English-non_native-000042.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: I need to point out that this appalling attack happening in London is an immediate result of some UK politicians' behavior for a while.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/accent_transfer-English/Imitator_T2C-English-native-000045.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/accent_transfer-English/Imitator_T2C-English-non_native-000045.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk4/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: Now and then customers walked in, asking to buy masks.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/accent_transfer-English/Imitator_T2C-English-native-000042.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/accent_transfer-English/Imitator_T2C-English-non_native-000042.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: I need to point out that this appalling attack happening in London is an immediate result of some UK politicians' behavior for a while.</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/accent_transfer-English/Imitator_T2C-English-native-000045.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/accent_transfer-English/Imitator_T2C-English-non_native-000045.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Mandarin & Northeastern Mandarin
+
+<table>
+  <thead>
+    <tr>
+      <th>Record</th>
+      <th>Imitator-T2C Mandarin</th>
+      <th>Imitator-T2C Northeastern Mandarin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk1/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: 这天实习特工来参加结业考试，感觉会有一场刺激的动作戏。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/accent_transfer-Mandarin/Imitator_T2C-Mandarin-2021-6-1814_20_25_2.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/accent_transfer-Mandarin/Imitator_T2C-Northeastern-2021-6-1814_20_25_2.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: 就当我以为他不会这么干的时候，他居然开始摸自己的下巴。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/accent_transfer-Mandarin/Imitator_T2C-Mandarin-2021-6-1814_20_25_32.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/accent_transfer-Mandarin/Imitator_T2C-Northeastern-2021-6-1814_20_25_32.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk2/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: 这天实习特工来参加结业考试，感觉会有一场刺激的动作戏。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/accent_transfer-Mandarin/Imitator_T2C-Mandarin-2021-6-1814_20_25_2.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/accent_transfer-Mandarin/Imitator_T2C-Northeastern-2021-6-1814_20_25_2.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: 就当我以为他不会这么干的时候，他居然开始摸自己的下巴。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/accent_transfer-Mandarin/Imitator_T2C-Mandarin-2021-6-1814_20_25_32.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/accent_transfer-Mandarin/Imitator_T2C-Northeastern-2021-6-1814_20_25_32.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk3/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: 这天实习特工来参加结业考试，感觉会有一场刺激的动作戏。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/accent_transfer-Mandarin/Imitator_T2C-Mandarin-2021-6-1814_20_25_2.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/accent_transfer-Mandarin/Imitator_T2C-Northeastern-2021-6-1814_20_25_2.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: 就当我以为他不会这么干的时候，他居然开始摸自己的下巴。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/accent_transfer-Mandarin/Imitator_T2C-Mandarin-2021-6-1814_20_25_32.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/accent_transfer-Mandarin/Imitator_T2C-Northeastern-2021-6-1814_20_25_32.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk4/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="3">
+        <div class="text_gst">Text: 这天实习特工来参加结业考试，感觉会有一场刺激的动作戏。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/accent_transfer-Mandarin/Imitator_T2C-Mandarin-2021-6-1814_20_25_2.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/accent_transfer-Mandarin/Imitator_T2C-Northeastern-2021-6-1814_20_25_2.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="text_gst">Text: 就当我以为他不会这么干的时候，他居然开始摸自己的下巴。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/accent_transfer-Mandarin/Imitator_T2C-Mandarin-2021-6-1814_20_25_32.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/accent_transfer-Mandarin/Imitator_T2C-Northeastern-2021-6-1814_20_25_32.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Style Transfer
+
+### rap
+
+<table>
+  <thead>
+    <tr>
+      <th>Record</th>
+      <th>Imitator-T2C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk1/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="1">
+        <div class="text_gst">Text: 淡黄的长裙，蓬松的头发。牵着我的手，看最新展出的油画。无人的街道，空荡的家里。就只剩我一个人开狂欢的party。yeah~。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/style_transfer/Imitator_T2C-lab_1.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <div class="text_gst">Text: 你看这个面它又长又宽。就像这个碗它又大又圆。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk1/synthesis/style_transfer/Imitator_T2C-lab_2.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk2/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="1">
+        <div class="text_gst">Text: 淡黄的长裙，蓬松的头发。牵着我的手，看最新展出的油画。无人的街道，空荡的家里。就只剩我一个人开狂欢的party。yeah~。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/style_transfer/Imitator_T2C-lab_1.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <div class="text_gst">Text: 你看这个面它又长又宽。就像这个碗它又大又圆。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk2/synthesis/style_transfer/Imitator_T2C-lab_2.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk3/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="1">
+        <div class="text_gst">Text: 淡黄的长裙，蓬松的头发。牵着我的手，看最新展出的油画。无人的街道，空荡的家里。就只剩我一个人开狂欢的party。yeah~。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/style_transfer/Imitator_T2C-lab_1.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <div class="text_gst">Text: 你看这个面它又长又宽。就像这个碗它又大又圆。</div>
+      </td>
+    </tr>
+    <tr>
+     	<td>
+        <audio controls="">
+          <source src="audio/spk3/synthesis/style_transfer/Imitator_T2C-lab_2.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4">
+        <audio controls="">
+          <source src="audio/spk4/record.wav" type="audio/wav">
+        </audio>
+      </td>
+      <td colspan="1">
+        <div class="text_gst">Text: 淡黄的长裙，蓬松的头发。牵着我的手，看最新展出的油画。无人的街道，空荡的家里。就只剩我一个人开狂欢的party。yeah~。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/style_transfer/Imitator_T2C-lab_1.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <div class="text_gst">Text: 你看这个面它又长又宽。就像这个碗它又大又圆。</div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <audio controls="">
+          <source src="audio/spk4/synthesis/style_transfer/Imitator_T2C-lab_2.wav" type="audio/wav">
+        </audio>
+      </td>
+    </tr>
+  </tbody>
+</table>
